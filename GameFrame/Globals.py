@@ -16,7 +16,7 @@ class Globals:
     window_name = 'Spy Hunter'
 
     # - Set the order of the rooms - #
-    levels = ["WelcomeScreen", "Maze", "ScrollingShooter", "BreakOut"]
+    levels = ["WelcomeScreen", "GamePlay"]
 
     # - Set the starting level - #
     start_level = 0
