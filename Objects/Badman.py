@@ -1,4 +1,5 @@
 from GameFrame import RoomObject, Globals
+from Objects.Net import Net
 import random
 
 class Bad(RoomObject):
@@ -19,15 +20,31 @@ class Bad(RoomObject):
         # set inital movement
         self.y_speed = random.choice([-10,10])
 
+        # start asteroid timer
+        net_spawn_time = random.randint(15,150)
+        self.set_timer(net_spawn_time, self.spawn_net)
+
     def keep_in_room(self):
         """
-        Keeps the bad guy inside the top and bottom room limits
+        Keeps the Zork inside the top and bottom room limits
         """
         if self.y < 0 or self.y > Globals.SCREEN_HEIGHT - self.height:
             self.y_speed *= -1
-    
+            
     def step(self):
         """
-        Determine what happens to the bad guy on each tick of the game clock
+        Determine what happens to the Dragon on each tick of the game clock
         """
         self.keep_in_room()
+        
+    def spawn_net(self):
+        """
+        Randomly spawns a new Asteroid
+        """
+        # spawn Asteroid and add to room
+        new_net = Net(self.room, self.x, self.y + self.height/2)
+        self.room.add_room_object(new_net)
+        
+        # reset time for next Asteroid spawn
+        net_spawn_time = random.randint(15, 150)
+        self.set_timer(net_spawn_time, self.spawn_net)
