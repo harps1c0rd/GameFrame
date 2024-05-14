@@ -1,6 +1,7 @@
-from GameFrame import Level
+from GameFrame import Level, Globals
 from Objects.Guy import Dude
 from Objects.Badman import Bad
+from Objects.Hud import Score
 
 class GamePlay(Level):
     def __init__(self, screen, joysticks):
@@ -13,3 +14,8 @@ class GamePlay(Level):
         self.add_room_object(Dude(self, 25, 50))
         self.add_room_object(Bad(self,1120, 50))
 
+        # add HUD items
+        self.score = Score(self, 
+                           Globals.SCREEN_WIDTH/2 - 20, 20, 
+                           str(Globals.SCORE))
+        self.add_room_object(self.score)

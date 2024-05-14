@@ -19,6 +19,10 @@ class Bullet(RoomObject):
         # set movement
         self.set_direction(0, 20)
         
+        # handle events
+        self.register_collision_object("Net")
+        self.register_collision_object("Hostage")
+
     def step(self):
         """
         Determine what happens to the laser on each tick of the game clock
@@ -31,3 +35,15 @@ class Bullet(RoomObject):
         """
         if self.x > Globals.SCREEN_WIDTH:
             self.room.delete_object(self)
+
+    # --- Event handlers
+    def handle_collision(self, other, other_type):
+        """
+        Handles laser collisions with other registered objects
+        """
+        if other_type == "Net":
+            self.room.delete_object(other)
+            self.room.score.update_score(5)
+        elif other_type == "Hostage":
+            self.room.delete_object(other)
+            self.room.score.update_score(-10)

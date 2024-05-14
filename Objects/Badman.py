@@ -1,5 +1,6 @@
 from GameFrame import RoomObject, Globals
 from Objects.Net import Net
+from Objects.Hostage import Hostage
 import random
 
 class Bad(RoomObject):
@@ -48,3 +49,19 @@ class Bad(RoomObject):
         # reset time for next Asteroid spawn
         net_spawn_time = random.randint(15, 150)
         self.set_timer(net_spawn_time, self.spawn_net)
+
+        # start hostage timer
+        hostage_spawn_time = random.randint(30, 200)
+        self.set_timer(hostage_spawn_time, self.spawn_hostage)
+
+    def spawn_hostage(self):
+        """
+        Randomly spawns a new astronaut
+        """
+        # spawn hostage and add to room
+        new_hostage = Hostage(self.room, self.x, self.y + self.height/2)
+        self.room.add_room_object(new_hostage)
+        
+        # reset timer for next hostage spawn
+        hostage_spawn_time = random.randint(30, 200)
+        self.set_timer(hostage_spawn_time, self.spawn_hostage)
