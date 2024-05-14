@@ -11,10 +11,10 @@ class Title(RoomObject):
         # set image
         image = self.load_image("Title.png")
         self.set_image(image,800,350)
-
+        
         # register for key events
         self.handle_key_events = True 
-
+        
     def key_pressed(self, key):
         """
         If the key pressed is space the game will start
