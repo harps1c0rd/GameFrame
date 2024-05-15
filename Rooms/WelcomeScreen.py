@@ -18,5 +18,5 @@ class WelcomeScreen(Level):
         self.bg_music = self.load_sound("Reed.mp3")
         
         # play background music
-        self.bg_music.set_volume(0.3)
+        self.bg_music.set_volume(0.4)
         self.bg_music.play(loops=1)
