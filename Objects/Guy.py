@@ -65,6 +65,7 @@ class Dude(RoomObject):
             self.room.add_room_object(new_bullet)
             self.can_shoot = False
             self.set_timer(10,self.reset_shot)
+            self.room.shoot_bullet.play()
             
     def reset_shot(self):
         """

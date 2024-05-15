@@ -21,7 +21,7 @@ class Bad(RoomObject):
         # set inital movement
         self.y_speed = random.choice([-10,10])
 
-        # start asteroid timer
+        # start net timer
         net_spawn_time = random.randint(15,150)
         self.set_timer(net_spawn_time, self.spawn_net)
 
@@ -40,13 +40,13 @@ class Bad(RoomObject):
         
     def spawn_net(self):
         """
-        Randomly spawns a new Asteroid
+        Randomly spawns a new net
         """
-        # spawn Asteroid and add to room
+        # spawn net and add to room
         new_net = Net(self.room, self.x, self.y + self.height/2)
         self.room.add_room_object(new_net)
         
-        # reset time for next Asteroid spawn
+        # reset time for next net spawn
         net_spawn_time = random.randint(15, 150)
         self.set_timer(net_spawn_time, self.spawn_net)
 
@@ -56,7 +56,7 @@ class Bad(RoomObject):
 
     def spawn_hostage(self):
         """
-        Randomly spawns a new astronaut
+        Randomly spawns a new hostage
         """
         # spawn hostage and add to room
         new_hostage = Hostage(self.room, self.x, self.y + self.height/2)

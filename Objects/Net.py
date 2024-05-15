@@ -56,4 +56,11 @@ class Net(RoomObject):
         """
         
         if other_type == "Dude":
-            self.room.running = False
+            self.room.delete_object(self)
+            self.room.net_collision.play()
+            Globals.LIVES -= 1
+            if Globals.LIVES > 0:
+                self.room.lives.update_image()
+            else:
+                self.room.running = False
+

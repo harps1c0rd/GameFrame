@@ -2,12 +2,12 @@ from GameFrame import RoomObject, Globals
 
 class Bullet(RoomObject):
     """
-    Class for the lasers shot by the Ship
+    Class for the bullet shot by the dude
     """
     
     def __init__(self, room, x, y):
         """
-        Inistialise the laser
+        Inistialise the bullet
         """
         # include attributes and methods from RoomObject
         RoomObject.__init__(self, room, x, y)
@@ -42,8 +42,10 @@ class Bullet(RoomObject):
         Handles laser collisions with other registered objects
         """
         if other_type == "Net":
+            self.room.net_shot.play()
             self.room.delete_object(other)
             self.room.score.update_score(5)
         elif other_type == "Hostage":
+            self.room.hostage_shot.play()
             self.room.delete_object(other)
             self.room.score.update_score(-10)

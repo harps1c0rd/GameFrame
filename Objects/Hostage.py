@@ -35,6 +35,7 @@ class Hostage(RoomObject):
         """
         # ship collision
         if other_type == "Dude":
+            self.room.hostage_saved.play()
             self.room.delete_object(self)
             self.room.score.update_score(50)
             
